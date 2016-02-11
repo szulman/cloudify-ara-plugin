@@ -1,0 +1,184 @@
+
+plugins:
+    ara:
+        executor: host_agent
+        source: https://github.com/szulman/cloudify-ara-plugin/archive/master.zip
+        package_name: cloudify-ara-plugin
+        package_version: 'master'
+
+node_types:
+    cloudify.ara.nodes.SoftwareComponent:
+        derived_from: cloudify.nodes.SoftwareComponent
+        properties:
+            # All ara related configuration goes inside
+            # the "ara_config" property.
+            ara_config: {}
+
+        interfaces:
+            # All operations mapped to same entry point in ara plugin
+            # The "operation" function decides what to run according
+            # to the operation being performed. The operation is taken
+            # from the passed context (CloudifyContext.operation)
+            cloudify.interfaces.lifecycle:
+                create:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                configure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                start:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                stop:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                delete:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+
+    # A web server configured with ara
+    cloudify.ara.nodes.WebServer:
+        derived_from: cloudify.nodes.WebServer
+        interfaces:
+            cloudify.interfaces.lifecycle:
+                create:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                configure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                start:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                stop:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                delete:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+        properties:
+            ara_config: {}
+
+    # An app server configured with ara
+    cloudify.ara.nodes.ApplicationServer:
+        derived_from: cloudify.nodes.ApplicationServer
+        interfaces:
+            cloudify.interfaces.lifecycle:
+                create:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                configure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                start:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                stop:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                delete:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+        properties:
+            ara_config: {}
+
+    # A db server configured with ara
+#    cloudify.ara.nodes.DBMS:
+#        derived_from: cloudify.nodes.DBMS
+#        interfaces:
+#            cloudify.interfaces.lifecycle:
+#                create:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                configure:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                start:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                stop:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                delete:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#        properties:
+#            ara_config: {}
+
+    # An app module configured with ara
+    cloudify.ara.nodes.ApplicationModule:
+        derived_from: cloudify.nodes.ApplicationModule
+        interfaces:
+            cloudify.interfaces.lifecycle:
+                create:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                configure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                start:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                stop:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                delete:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+        properties:
+            ara_config: {}
+
+relationships:
+    cloudify.ara.depends_on:
+        derived_from: cloudify.relationships.depends_on
+        source_interfaces:
+            # The comment under types.interfaces applies here too
+            cloudify.interfaces.relationship_lifecycle:
+                preconfigure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                postconfigure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                establish:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                unlink:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+
+    cloudify.ara.connected_to:
+        derived_from: cloudify.relationships.connected_to
+        source_interfaces:
+            # The comment under types.interfaces applies here too
+            cloudify.interfaces.relationship_lifecycle:
+                preconfigure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                postconfigure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                establish:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                unlink:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+
+    cloudify.ara.contained_in:
+        derived_from: cloudify.relationships.connected_to
+        source_interfaces:
+            # The comment under types.interfaces applies here too
+            cloudify.interfaces.relationship_lifecycle:
+                preconfigure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                postconfigure:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                establish:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
+                unlink:
+                    implementation: ara.ara_plugin.operations.operation
+                    inputs: {}
