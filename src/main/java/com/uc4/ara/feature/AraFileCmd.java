@@ -112,7 +112,7 @@ public class AraFileCmd {
 						try {
 							ret = instance.run(params);
 							FeatureUtil.logMsg("Return code: " + ret, MsgTypes.INFO);
-							System.exit(ret);
+							//System.exit(ret);
 						} catch (Exception e) {
 							instance.printUsage();
 							FeatureUtil.logMsg(e);
@@ -135,7 +135,7 @@ public class AraFileCmd {
 							Logger.logException(e);
 						} finally {
 							feature.finalize(errorCode);
-							System.exit(errorCode);
+							//System.exit(errorCode);
 						}
 					}
 					} catch(ClassNotFoundException ex) {
