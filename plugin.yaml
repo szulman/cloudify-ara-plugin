@@ -83,27 +83,27 @@ node_types:
             ara_config: {}
 
     # A db server configured with ara
-    cloudify.ara.nodes.DBMS:
-        derived_from: cloudify.nodes.DBMS
-        interfaces:
-            cloudify.interfaces.lifecycle:
-                create:
-                    implementation: ara.ara_plugin.operations.operation
-                    inputs: {}
-                configure:
-                    implementation: ara.ara_plugin.operations.operation
-                    inputs: {}
-                start:
-                    implementation: ara.ara_plugin.operations.operation
-                    inputs: {}
-                stop:
-                    implementation: ara.ara_plugin.operations.operation
-                    inputs: {}
-                delete:
-                    implementation: ara.ara_plugin.operations.operation
-                    inputs: {}
-        properties:
-            ara_config: {}
+#    cloudify.ara.nodes.DBMS:
+#        derived_from: cloudify.nodes.DBMS
+#        interfaces:
+#            cloudify.interfaces.lifecycle:
+#                create:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                configure:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                start:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                stop:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#                delete:
+#                    implementation: ara.ara_plugin.operations.operation
+#                    inputs: {}
+#        properties:
+#            ara_config: {}
 
     # An app module configured with ara
     cloudify.ara.nodes.ApplicationModule:
