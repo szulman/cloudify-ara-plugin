@@ -4,7 +4,7 @@ plugins:
         executor: host_agent
         source: https://github.com/szulman/cloudify-ara-plugin/archive/master.zip
         package_name: cloudify-ara-plugin
-        package_version: '1.0.0'
+        package_version: 'master'
 
 node_types:
     cloudify.ara.nodes.SoftwareComponent:
